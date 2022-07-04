@@ -3,6 +3,7 @@ import { faBed, faCar, faPerson, faPlane, faTaxi } from '@fortawesome/free-solid
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { DateRange } from 'react-date-range';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 
 import 'react-date-range/dist/styles.css'; // main css file
@@ -12,7 +13,8 @@ import './header.css';
 const Header = ({ type }) => {
   const [openDate, setOpenDate] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
-  
+  const [destination, setDestination] = useState("");
+
   const [options, setOptions] = useState({
     adult: 1,
     children: 0,
@@ -27,6 +29,8 @@ const Header = ({ type }) => {
     }
   ]);
 
+  const navigate = useNavigate();
+
   const handleOption = (name, operation) => {
     setOptions(prev => {
       return {
@@ -34,6 +38,12 @@ const Header = ({ type }) => {
         [name]: operation==="i"? options[name] +1: options[name]>1? options[name] -1: 0
       }
     });
+  }
+
+  const handleSearch = () => {
+    navigate("/hotels", { state: {
+      destination, date, options
+    }});
   }
 
   return (
@@ -70,7 +80,7 @@ const Header = ({ type }) => {
           <div className="headerSearch">
             <div className="headerSearchItem">
               <FontAwesomeIcon icon={faBed} className="headerIcon" />
-              <input type="text" placeholder='Where are you going?' className='headerSearchInput'/>
+              <input onChange={e=>setDestination(e.target.value)} type="text" placeholder='Where are you going?' className='headerSearchInput'/>
             </div>
             <div className="headerSearchItem">
               <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
@@ -80,6 +90,7 @@ const Header = ({ type }) => {
                 onChange={item => setDate([item.selection])}
                 moveRangeOnFirstSelection={false}
                 ranges={date}
+                minDate={new Date()}
                 className="dateComponent"
               />: null}
             </div>
@@ -115,7 +126,7 @@ const Header = ({ type }) => {
               </div>: null}
             </div>
             <div className="headerSearchItem">
-              <button className="headerBtn">Search</button>
+              <button className="headerBtn" onClick={handleSearch}>Search</button>
             </div>
           </div></>: null}
       </div>
