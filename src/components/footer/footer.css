@@ -1,6 +1,7 @@
 .footer {
   width: 100%;
-  width: 1024px;
+  max-width: 1024px;
+  margin: 0 auto;
   font-size: 12px;
 }
 

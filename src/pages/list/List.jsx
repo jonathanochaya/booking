@@ -8,6 +8,8 @@ import { DateRange } from "react-date-range";
 import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
 import SearchItem from "../../components/searchItem/SearchItem";
+import MailList from "../../components/mailList/MailList";
+import Footer from "../../components/footer/Footer";
 
 const List = () => {
 
@@ -78,6 +80,8 @@ const List = () => {
           </div>
         </div>
       </div>
+      <MailList />
+      <Footer />
     </div>
   );
 }
