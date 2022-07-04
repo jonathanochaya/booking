@@ -1,0 +1,45 @@
+.fProperties {
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.fPropertyItem {
+  flex: 1;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.fPropertyImg {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.fPropertyName {
+  font-weight: bold;
+}
+
+.fPropertyCity {
+  font-weight: 300;
+}
+
+.fPropertyPrice {
+  font-weight: 500;
+}
+
+.fPropertyRating>button {
+  background-color: #003580;
+  color: #fff;
+  border: none;
+  padding: 3px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.fPropertyRating>span {
+  font-size: 14px;
+}
